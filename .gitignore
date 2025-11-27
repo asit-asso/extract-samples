@@ -1,3 +1,4 @@
 *.log
 *.recover
 output/
+.idea

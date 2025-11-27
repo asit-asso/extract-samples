@@ -2,10 +2,10 @@
 
 This repository contains extraction script samples and examples to demonstrate how to use the following extraction plugins of the web application Extract. For each plugin, you can follow up tutorials how to set up an extraction :
 
-* [FME Form (Desktop)](https://benoitregamey.github.io/extract/how-to/fme-form)
-* [FME Flow (Server)](https://benoitregamey.github.io/extract/how-to/fme-flow)
-* [Python](https://benoitregamey.github.io/extract/how-to/python)
-* [QGIS Atlas Server](https://benoitregamey.github.io/extract/how-to/qgis-server-atlas)
+* [FME Form (Desktop)](https://asit-asso.github.io/extract/how-to/fme-form)
+* [FME Flow (Server)](https://asit-asso.github.io/extract/how-to/fme-flow)
+* [Python](https://asit-asso.github.io/extract/how-to/python)
+* [QGIS Atlas Server](https://asit-asso.github.io/extract/how-to/qgis-server-atlas)
 
 ## Data Source and Licence
 
