@@ -7,7 +7,6 @@ OGR2OGR_PATH = "C:\\OSGeo4W\\bin\\ogr2ogr.exe"
 INPUT_DATA = "inputData.gpkg"
 
 if __name__ == "__main__":
-
     # Get parameters file path from command line argument
     parameters_file = sys.argv[1]
 
@@ -23,11 +22,8 @@ if __name__ == "__main__":
         "EPSG:4326",
         "-t_srs",
         "EPSG:2056",
-        os.path.join(
-            parameters["properties"]["FolderOut"],
-            "clipper.geojson"
-        ),
-        parameters_file
+        os.path.join(parameters["properties"]["FolderOut"], "clipper.geojson"),
+        parameters_file,
     ]
 
     # Run the ogr2ogr command while catching and raising errors
@@ -61,17 +57,14 @@ if __name__ == "__main__":
         "-t_srs",
         output_proj,
         "-clipsrc",
-        os.path.join(
-            parameters["properties"]["FolderOut"],
-            "clipper.geojson"
-        ),
+        os.path.join(parameters["properties"]["FolderOut"], "clipper.geojson"),
         "-f",
         format,
         os.path.join(
             parameters["properties"]["FolderOut"],
-            f"result.{parameters["properties"]["Parameters"]["FORMAT"].lower()}"
+            f"result.{parameters['properties']['Parameters']['FORMAT'].lower()}",
         ),
-        INPUT_DATA
+        INPUT_DATA,
     ]
 
     # Run the ogr2ogr command while catching and raising errors
@@ -82,8 +75,21 @@ if __name__ == "__main__":
         raise subprocess.CalledProcessError(1, cmd) from e
 
     # Delete temporary clipper.geojson file
-    os.remove(os.path.join(
-            parameters["properties"]["FolderOut"],
-            "clipper.geojson"
-        )
+    os.remove(os.path.join(parameters["properties"]["FolderOut"], "clipper.geojson"))
+
+    # Example to deal with an extraction that returns no features (empty).
+    # This example only works for the format geojson. To be used with the option
+    # "Cancel processing when no data is found" in Extract
+    ouput_geojson = os.path.join(
+        parameters["properties"]["FolderOut"],
+        f"result.{parameters["properties"]["Parameters"]["FORMAT"].lower()}"
     )
+
+    if ouput_geojson.endswith(".geojson"):
+
+        with open(ouput_geojson, "r", encoding="utf-8") as json_file:
+            ouput_geojson = json.load(json_file)
+
+        if len(ouput_geojson["features"]) == 0:
+            raise Exception("noDataForExtract")
+
