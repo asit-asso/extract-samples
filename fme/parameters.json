@@ -16351,7 +16351,7 @@
     },
     "properties": {
         "Request": 811,
-        "FolderOut": "output",
+        "FolderOut": "C:\\extract\\orders\\123456\\folderout",
         "OrderGuid": "8989da1d-34a5-468f-b1a2-770ce3aadb44",
         "OrderLabel": "523537",
         "ClientGuid": "8e3cb34c-88f9-4c38-97e9-18d15d3b8ecc",
